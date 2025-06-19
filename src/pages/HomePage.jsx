@@ -1,8 +1,11 @@
+
 import React from 'react'
 
+
 function HomePage() {
+
   return (
-    <div>HomePage</div>
+  <><h1>WELCOME TO HOME PAGE</h1></>
   )
 }
 

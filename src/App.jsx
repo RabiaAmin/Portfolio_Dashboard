@@ -10,8 +10,17 @@ import ResetPassword from './pages/ResetPassword'
 import NotFoundPage from './pages/NotFoundPage'
 import { ToastContainer } from 'react-toastify';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { useDispatch } from 'react-redux'
+import { useEffect } from 'react'
+import { getUser } from './store/slices/userSlice'
 
 function App() {
+
+  const dispatch = useDispatch();
+
+  useEffect(()=>{
+       dispatch(getUser());
+  })
  
   return (
      <BrowserRouter>
@@ -19,7 +28,7 @@ function App() {
           <Route path="/" element={<HomePage/>} />
           <Route path="/login" element={<Login/>} />
           <Route path="/password/forgot" element={<ForgotPassword/>} />
-          <Route path="/password/reset:token" element={<ResetPassword/>} />
+          <Route path="/password/reset/:token" element={<ResetPassword/>} />
           <Route path="/manage/skills" element={<ManageSkills/>} />
           <Route path="/manage/projects" element={<ManageProject/>} />
           <Route path="/view/projects/:id" element={<ViewProject/>} />

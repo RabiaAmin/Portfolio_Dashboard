@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { clearAllUserErrors, login } from '@/store/slices/userSlice'
+import SpecialLoadinBtn from '@/pages/components/specialLoadingBtn'
 
 function Login() {
   const [email, setEmail] = useState("")
@@ -84,9 +85,12 @@ function Login() {
                       required
                     />
                   </div>
+                  {
+                    loading ? <SpecialLoadinBtn content="Loging In" /> :
                   <Button type="submit" className="w-full">
                     Login
                   </Button>
+                  }
                 </div>
               </form>
               <div className="bg-muted relative hidden md:block">

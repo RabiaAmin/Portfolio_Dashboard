@@ -126,7 +126,7 @@ export const getUser = () => async (dispatch) => {
     const data = await axios.get("http://localhost:3000/api/v1/user/getUser", {
       withCredentials: true,
     });
-    console.log("this is user Data", data);
+ 
     dispatch(userSllice.actions.loadUserSuccess(data.data.user));
     dispatch(userSllice.actions.clearAllErrors());
   } catch (error) {

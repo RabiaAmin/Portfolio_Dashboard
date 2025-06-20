@@ -65,12 +65,12 @@ export const resetPassword = (token, password, confirmPassword) => async (dispat
   dispatch(forgotResetPassSlice.actions.resetPasswordRequest());
   try {
       const data = await axios.put(
-      ` http://localhost:3000/api/v1/user/password/reset/${token}`,
+      `http://localhost:3000/api/v1/user/password/reset/${token}`,
       { password,confirmPassword},
       { withCredentials: true, headers: { "Content-Type": "application/json" } }
     );
   
-    dispatch(forgotResetPassSlice.actions.resetPasswordSuccess(data.data.user));
+    dispatch(forgotResetPassSlice.actions.resetPasswordSuccess(data.data.message));
     dispatch(forgotResetPassSlice.actions.clearAllErrors());
   } catch (error) {
     dispatch(forgotResetPassSlice.actions.resetPasswordFail(error.response.data.message));

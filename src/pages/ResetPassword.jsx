@@ -9,6 +9,7 @@ import { Label } from "@/components/ui/label";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import SpecialLoadinBtn from "@/pages/components/specialLoadingBtn";
 import { clearAllForgotPasswordErrors, resetPassword } from "@/store/slices/forgotResetPasswordSlice";
+import { getUser } from "@/store/slices/userSlice";
 
 function ResetPassword() {
   const {token} = useParams();
@@ -39,6 +40,7 @@ function ResetPassword() {
 
     if (message !== null) {
       toast.success(message);
+      dispatch(getUser());
     }
   }, [dispatch, isAuthenticated, error, loading]);
 

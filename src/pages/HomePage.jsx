@@ -20,10 +20,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import SideBarLink from './components/SideBarLink';
+import Dashboard from "./components/Dashboard";
+import AddProject from "./components/AddProject";
+import AddSkills from "./components/AddSkills";
+import Account from "./components/Account";
 
 
 function HomePage() {
- const [active, setActive] = useState("");
+ const [active, setActive] = useState("Dashboard");
   const {isAuthenticated,error,user} = useSelector((state)=>state.user);
   const dispatch = useDispatch();
   const handleLogout = ()=>{
@@ -123,27 +127,22 @@ function HomePage() {
         </h1>
       </div>
      </header>
-     {/* {
+     {
       (()=>{
         switch (active) {
           case "Dashboard":
             return <Dashboard/>
-            break;
           case "Add Project":
             return <AddProject/>
-            break;
-          case "Add Project":
-            return <AddProject/>
-            break;
           case "Add Skills":
             return <AddSkills/>
-            break;
           case "Account":
-            return <Accout/>
-            break;
+            return <Account/>
+          default:
+            return null; 
         }
-      })
-     } */}
+      })()
+     }
     </div>
    </>
   )

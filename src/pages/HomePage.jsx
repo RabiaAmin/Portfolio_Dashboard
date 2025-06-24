@@ -1,4 +1,3 @@
-
 import {
   Sheet,
   SheetContent,
@@ -25,127 +24,123 @@ import AddProject from "./components/AddProject";
 import AddSkills from "./components/AddSkills";
 import Account from "./components/Account";
 
-
 function HomePage() {
- const [active, setActive] = useState("Dashboard");
-  const {isAuthenticated,error,user} = useSelector((state)=>state.user);
+  const [active, setActive] = useState("Dashboard");
+  const { isAuthenticated, error, user } = useSelector((state) => state.user);
   const dispatch = useDispatch();
-  const handleLogout = ()=>{
+  const navigateTo = useNavigate();
+
+  const handleLogout = () => {
     dispatch(logout());
     toast.success("User Logged Out!");
-  }
-  const navigateTo = useNavigate();
-  useEffect(()=>{
-    if(error){
+  };
+
+  useEffect(() => {
+    if (error) {
       toast.error(error);
       dispatch(clearAllUserErrors());
     }
-
-    if(!isAuthenticated){
+    if (!isAuthenticated) {
       navigateTo("/login");
     }
-  },[isAuthenticated]);
-
+  }, [isAuthenticated]);
 
   return (
-   <>
-    <div className='flex min-h-screen w-full flex-col bg-muted/40'>
-     <aside className='fixed inset-y-0 hidden w-15 flex-col border-r bg-background sm:flex z-50 '>
-      <nav className='flex flex-col items-center gap-4 px-2 sm:py-5'>
-        <Link className='group flex h-p w-p shrink-0 items-center justify-center gap-2 rounded-full'>
-        <Package className='h-6 w-6 transition-all group-hover:scale-110' />
-        <span className='sr-only'>Dashboard</span>
-        </Link>
+    <div className='flex flex-col min-h-screen bg-muted/40'>
+      <div className='flex flex-1'>
+        <aside className='fixed inset-y-0 left-0 z-50 hidden w-16 flex-col border-r bg-background sm:flex'>
+          <nav className='flex flex-col items-center gap-4 px-2 py-5'>
+            <Link className='group flex h-p w-p shrink-0 items-center justify-center gap-2 rounded-full'>
+              <Package className='h-6 w-6 transition-all group-hover:scale-110' />
+              <span className='sr-only'>Dashboard</span>
+            </Link>
             <SideBarLink menu="Dashboard" icon={Home} active={active} setActive={setActive} />
-            <SideBarLink menu="Add Project" icon={FolderGit} active={active} setActive={setActive}/>
+            <SideBarLink menu="Add Project" icon={FolderGit} active={active} setActive={setActive} />
             <SideBarLink menu="Add Skills" icon={PencilRuler} active={active} setActive={setActive} />
-             <SideBarLink menu="Account" icon={User} active={active} setActive={setActive}/>
-      </nav>
-      <nav className='mt-auto flex flex-col items-center gap-4 px-2 sm:py-5   border-t'>
-         <TooltipProvider>
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <Link
-            onClick={handleLogout}
-            className={`flex h-9 items-center justify-center rounded-lg  text-accent-foreground hover:text-primary transition-colors hover:text-foreground md:h-8 md:w-8`}
-          >
-            <LogOut className="w-5 h-5" />
-            <span className="sr-only">Logout</span>
-          </Link>
-        </TooltipTrigger>
-        <TooltipContent side="right">
-          Logout
-        </TooltipContent>
-      </Tooltip>
-    </TooltipProvider>
-      </nav>
+            <SideBarLink menu="Account" icon={User} active={active} setActive={setActive} />
+          </nav>
+          <nav className='mt-auto flex flex-col items-center gap-4 px-2 py-5 border-t'>
+            <TooltipProvider>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Link
+                    onClick={handleLogout}
+                    className='flex h-9 w-9 items-center justify-center rounded-lg text-accent-foreground hover:text-primary transition-colors md:h-8 md:w-8'
+                  >
+                    <LogOut className='w-5 h-5' />
+                    <span className='sr-only'>Logout</span>
+                  </Link>
+                </TooltipTrigger>
+                <TooltipContent side='right'>Logout</TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+          </nav>
+        </aside>
 
-     </aside>
-     <header className='sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4 sm:static sm:h-auto sm:border-0 sm:bg-transparent sm:px-6 max-[900px]:h-[100px]'>
-      <Sheet>
-        <SheetTrigger asChild>
-          <button size="icon" varient="outline" className="sm:hidden "> 
-            <PanelLeft className="w-5 h-5" />
-            <span className="sr-only">Toggle Menu</span>
-          </button>
-        </SheetTrigger>
-        <SheetContent side="left" className="sm:max-w-xs">
-           <nav className="grid gap-6 text-lg font-medium px-4 py-4">
-            <Link className="group flex  h-10 w-10 shrink-0 items-center justify-center gap-2 rounded-full bg-black text-lg font-semibold text-primary-foreground md:text-base ">
-              <Package2 className="h-5 w-5 transition-all group-hover:scale-110"/>
-              <span className="sr-only">Dashboard</span>
-            </Link>
-            <Link href="#" onClick={()=>setActive("Dashoard")} className={`flex items-center gap-4 px-2.5 ${active === "Dashboard"?"text-foreground":"text-muted-foreground hover:text-foreground"}`}>
-               <Home className="h-5 w-5"/>
-               Dashboard
-            </Link>
-              <Link href="#" onClick={()=>setActive("Add Project")} className={`flex items-center gap-4 px-2.5 ${active === "Add Project"?"text-foreground":"text-muted-foreground hover:text-foreground"}`}>
-               <FolderGit className="h-5 w-5"/>
-               Add Project
-            </Link>
-              <Link href="#" onClick={()=>setActive("Add Skills")} className={`flex items-center gap-4 px-2.5 ${active === "Add Skills"?"text-foreground":"text-muted-foreground hover:text-foreground"}`}>
-               <PencilRuler className="h-5 w-5"/>
-               Add Skills
-            </Link>
-              <Link href="#" onClick={()=>setActive("Account")} className={`flex items-center gap-4 px-2.5 ${active === "Account"?"text-foreground":"text-muted-foreground hover:text-foreground"}`}>
-               <Home className="h-5 w-5"/>
-               Account
-            </Link>
-            <Link href="#" onClick={()=>handleLogout} className="flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground">
-               <LogOut className="h-5 w-5"/>
-               Logout
-            </Link>
-           </nav>
-        </SheetContent>
-      </Sheet>
-      <div className="flex items-center gap-4 md:grow-0 sm:ml-16 sm:mt-5 ">
-        <img src={user && user.avatar && user.avatar.url} alt="avatar"
-        className="w-10 h-10 rounded-full max-[900px]:hidden"
-        />
-        <h1 className="text-4xl  max-[900px]:text-2xl">
-          Welcome Back , {user.username}
-        </h1>
+        <div className='flex flex-1 flex-col sm:ml-16 min-w-0'>
+          <header className='sticky top-0 z-30 flex h-14 items-center gap-4 border-b bg-background px-4 sm:px-6'>
+            <Sheet>
+              <SheetTrigger asChild>
+                <button className='sm:hidden'>
+                  <PanelLeft className='w-5 h-5' />
+                  <span className='sr-only'>Toggle Menu</span>
+                </button>
+              </SheetTrigger>
+              <SheetContent side='left' className='sm:max-w-xs'>
+                <nav className='grid gap-6 text-lg font-medium px-4 py-4'>
+                  <Link className='group flex h-10 w-10 items-center justify-center rounded-full bg-black text-primary-foreground'>
+                    <Package2 className='h-5 w-5 group-hover:scale-110 transition-all' />
+                    <span className='sr-only'>Dashboard</span>
+                  </Link>
+                  <Link to='#' onClick={() => setActive("Dashboard")} className={`${active === "Dashboard" ? "text-foreground" : "text-muted-foreground hover:text-foreground"} flex items-center gap-4 px-2.5`}>
+                    <Home className='h-5 w-5' />
+                    Dashboard
+                  </Link>
+                  <Link to='#' onClick={() => setActive("Add Project")} className={`${active === "Add Project" ? "text-foreground" : "text-muted-foreground hover:text-foreground"} flex items-center gap-4 px-2.5`}>
+                    <FolderGit className='h-5 w-5' />
+                    Add Project
+                  </Link>
+                  <Link to='#' onClick={() => setActive("Add Skills")} className={`${active === "Add Skills" ? "text-foreground" : "text-muted-foreground hover:text-foreground"} flex items-center gap-4 px-2.5`}>
+                    <PencilRuler className='h-5 w-5' />
+                    Add Skills
+                  </Link>
+                  <Link to='#' onClick={() => setActive("Account")} className={`${active === "Account" ? "text-foreground" : "text-muted-foreground hover:text-foreground"} flex items-center gap-4 px-2.5`}>
+                    <User className='h-5 w-5' />
+                    Account
+                  </Link>
+                  <Link to='#' onClick={handleLogout} className='flex items-center gap-4 px-2.5 text-muted-foreground hover:text-foreground'>
+                    <LogOut className='h-5 w-5' />
+                    Logout
+                  </Link>
+                </nav>
+              </SheetContent>
+            </Sheet>
+            <div className='flex items-center gap-4'>
+              {user?.avatar?.url && <img src={user.avatar.url} alt='avatar' className='w-10 h-10 rounded-full hidden sm:block' />}
+              <h1 className='text-xl sm:text-2xl font-semibold'>Welcome Back, {user.username}</h1>
+            </div>
+          </header>
+
+          <main className='flex-1 p-4 sm:p-6 min-w-0'>
+            {(() => {
+              switch (active) {
+                case "Dashboard":
+                  return <Dashboard />;
+                case "Add Project":
+                  return <AddProject />;
+                case "Add Skills":
+                  return <AddSkills />;
+                case "Account":
+                  return <Account />;
+                default:
+                  return null;
+              }
+            })()}
+          </main>
+        </div>
       </div>
-     </header>
-     {
-      (()=>{
-        switch (active) {
-          case "Dashboard":
-            return <Dashboard/>
-          case "Add Project":
-            return <AddProject/>
-          case "Add Skills":
-            return <AddSkills/>
-          case "Account":
-            return <Account/>
-          default:
-            return null; 
-        }
-      })()
-     }
     </div>
-   </>
-  )
+  );
 }
 
-export default HomePage
+export default HomePage;

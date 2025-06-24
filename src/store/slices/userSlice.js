@@ -151,7 +151,7 @@ export const updatePassword = (currentPassword,newPassword,confirmNewPassword)=>
   dispatch(userSllice.actions.updatePasswordRequest());
   try {
      const {data} = await axios.put("http://localhost:3000/api/v1/user/update/pawssord",{currentPassword,newPassword,confirmNewPassword},{withCredentials:true,headers:{"Content-Type":"application/json"}});
-     dispatch(userSllice.actions.updatePasswordSuccess(data.data.message));
+     dispatch(userSllice.actions.updatePasswordSuccess(data.message));
      dispatch(userSllice.actions.clearAllErrors());
   } catch (error) {
      dispatch(userSllice.actions.updatePasswordFail(error.response.data.message));
@@ -161,8 +161,8 @@ export const updatePassword = (currentPassword,newPassword,confirmNewPassword)=>
 export const updateProfile = (formdata)=> async (dispatch)=>{
   dispatch(userSllice.actions.updateProfileRequest());
   try {
-     const {data} = await axios.put("http://localhost:3000/api/v1/user/update/profile",{formdata},{withCredentials:true,headers:{"Content-Type":"multipart/form-data"}});
-     dispatch(userSllice.actions.updateProfileSuccess(data.data.message));
+     const {data} = await axios.put("http://localhost:3000/api/v1/user/update/profile",formdata,{withCredentials:true,headers:{"Content-Type":"multipart/form-data"}});
+     dispatch(userSllice.actions.updateProfileSuccess(data.message));
      dispatch(userSllice.actions.clearAllErrors());
   } catch (error) {
      dispatch(userSllice.actions.updateProfileFail(error.response.data.message));

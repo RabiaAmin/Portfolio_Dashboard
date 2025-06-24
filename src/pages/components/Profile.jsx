@@ -17,28 +17,37 @@ function Profile() {
               <p className="text-gray-400">Full Profile Preview</p>
             </div>
           <div className="grid gap-6">
-            <div className="flex items-start lg:justify-between lg:items-center flex-col lg:flex-row">
-              <div className="grid gap-4 w-full sm:w-72">
-                <Label>Profile Image</Label>
-                <img
-                  src={user && user.avatar && user.avatar.url}
-                  alt="avatar"
-                  className="w-full h-auto sm:w-72 sm:h-72 rounded-2xl object-contain border "
-                />
-              </div>
-              <div className="grid gap-4">
-                <div className="flex items-start lg:justify-between lg:items-center flex-col lg:flex-row">
-                  <div className="grid gap-2 w-full sm:w-72 ">
-                    <Label>Resume</Label>
-                    <img
-                      src={user && user.resume && user.resume.url}
-                      alt="resume"
-                      className="w-full h-auto sm:w-72 sm:h-72 rounded-2xl object-contain border "
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
+             <div className="flex flex-col lg:flex-row gap-6">
+                      {/* Profile Image Section */}
+                      <div className="grid gap-4 w-full sm:w-82">
+                        <Label>Profile Image</Label>
+                        <img
+                          src={user.avatar.url}
+                          alt="avatar"
+                          className="w-full h-auto sm:h-72 rounded-2xl object-contain border"
+                        />
+                       
+                      </div>
+            
+                      {/* Resume Section */}
+                      <div className="grid gap-4 w-full">
+                        <Label>Resume</Label>
+                        {user.resume.url ? (
+                          <div className="w-full relative border rounded-2xl overflow-hidden h-72">
+                            <iframe
+                              src={user.resume.url}
+                              className="w-full h-full"
+                              title="PDF Resume"
+                            />
+                          </div>
+                        ) : (
+                          <div className="flex items-center justify-center h-72 border rounded-2xl text-muted-foreground text-sm">
+                            No resume uploaded.
+                          </div>
+                        )}
+                      
+                      </div>
+                    </div>
             <div className="grid gap-2">
               <Label>User Name</Label>
               <Input type="text" defaultValue={user.username} disabled />

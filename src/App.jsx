@@ -13,13 +13,14 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import { getUser } from './store/slices/userSlice'
-
+import { getAllSkills } from './store/slices/skillSlice'
 function App() {
 
   const dispatch = useDispatch();
 
   useEffect(()=>{
        dispatch(getUser());
+       dispatch(getAllSkills())
   })
  
   return (

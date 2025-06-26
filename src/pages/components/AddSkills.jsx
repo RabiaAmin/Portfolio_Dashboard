@@ -54,7 +54,7 @@ function AddSkills() {
     }
   },[dispatch,loading,error,message])
 
-  // Add skill handler
+ 
   const addSkill = () => {
     const trimmed = draftSkill.trim();
     if (!trimmed || skills.includes(trimmed)) return;
@@ -82,9 +82,9 @@ const handleSaveSkill = (e) => {
 };
 
   return (
-    <div className="w-full h-full px-4 py-6">
+    <div className="flex justify-center items-center  w-full h-full px-4 py-6">
       <form onSubmit={handleSaveSkill}>
-        <div className="max-w-2xl mx-auto flex flex-col gap-6">
+        <div className="max-w-2xl mx-auto flex flex-col justify-center items-center gap-6">
           {/* Heading */}
           <h1 className="text-center text-2xl font-bold tracking-tight dark:text-gray-100">
             Add Skill
@@ -119,7 +119,7 @@ const handleSaveSkill = (e) => {
               />
               <Button
                 type="button"
-                className="gap-1 bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-white"
+                className="gap-1 bg-transparent border border-primary text-primary hover:bg-primary hover:text-white"
                 onClick={addCategories}
               >
                 <Plus size={16} /> Add
@@ -128,7 +128,7 @@ const handleSaveSkill = (e) => {
           </div>
 
           {/* New skill input */}
-          <div className="flex flex-col sm:flex-row gap-3 items-center justify-center">
+          <div className="flex gap-3 items-center justify-center">
             <Input
               value={draftSkill}
               onChange={(e) => setDraftSkill(e.target.value)}
@@ -138,7 +138,7 @@ const handleSaveSkill = (e) => {
             <Button
               type="button"
               onClick={addSkill}
-              className="gap-1 bg-transparent border-2 border-primary text-primary hover:bg-primary hover:text-white"
+              className="gap-1 bg-transparent border border-primary text-primary hover:bg-primary hover:text-white"
             >
               <Plus size={16} /> Add
             </Button>
@@ -166,8 +166,8 @@ const handleSaveSkill = (e) => {
           {/* Save Button */}
            {
                     loading ? <SpecialLoadinBtn content="Adding New Skill...." /> :
-                  <Button type="submit" className="w-full hover:bg-primary/90 transform transition duration-200 hover:scale-110">
-                    save
+                  <Button type="submit" className="cursor-pointer w-full hover:bg-primary/90 transform transition duration-200 hover:scale-110">
+                    Add New Skill
                   </Button>
                   }
         </div>

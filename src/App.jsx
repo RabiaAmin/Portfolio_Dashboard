@@ -14,13 +14,15 @@ import { useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import { getUser } from './store/slices/userSlice'
 import { getAllSkills } from './store/slices/skillSlice'
+import { getAllProject } from './store/slices/projectSlice'
 function App() {
 
   const dispatch = useDispatch();
 
   useEffect(()=>{
        dispatch(getUser());
-       dispatch(getAllSkills())
+       dispatch(getAllSkills());
+       dispatch(getAllProject())
   })
  
   return (

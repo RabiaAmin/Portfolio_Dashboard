@@ -20,6 +20,7 @@ function UpdateProfile() {
   const [linkedInUrl,setLinkedInUrl] = useState(user?.linkedInUrl ?? "");
   const [instagramUrl,setInstagramUrl] = useState(user?.instagramUrl ?? "");
   const [facebookUrl,setFacebookUrl] = useState(user?.facebookUrl ?? "");
+  const [portfolioUrl,setPortfolioUrl] = useState(user?.portfolioUrl ?? "");
   const [avatar, setAvatar] = useState(user?.avatar?.url || "");
   const [avatarPreview, setAvatarPreview] = useState(user?.avatar?.url || "");
   const [resume, setResume] = useState(user?.resume?.url || "");
@@ -57,6 +58,7 @@ function UpdateProfile() {
     formData.append("githubUrl",githubUrl);
     formData.append("instagramUrl",instagramUrl);
     formData.append("facebookUrl",facebookUrl);
+    formData.append("portfolioUrl",setPortfolioUrl);
     formData.append("avatar",avatar);
     formData.append("resume",resume);
     dispatch(updateProfile(formData));
@@ -184,6 +186,10 @@ function UpdateProfile() {
           <div className="grid gap-2">
             <Label>Facebook URL</Label>
             <Input type="text" placeholder="facebook url" value={facebookUrl || "Not Available yet"} onChange={(e)=>setFacebookUrl(e.target.value)} />
+          </div>
+             <div className="grid gap-2">
+            <Label>Portfolio URL</Label>
+            <Input type="text" placeholder="portfolio url" value={portfolioUrl || "Not Available yet"} onChange={(e)=>setPortfolioUrl(e.target.value)} />
           </div>
           <div className="grid gap-2 mb-8">
             {

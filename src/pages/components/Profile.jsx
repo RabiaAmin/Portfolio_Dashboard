@@ -80,6 +80,10 @@ function Profile() {
               <Label>Facebook Url</Label>
               <Input type="text" defaultValue={user.facebookUrl ?? "Not Available yet"} disabled />
             </div>
+            <div className="grid gap-2">
+              <Label>Portfolio Url</Label>
+              <Input type="text" defaultValue={user.portfolioUrl ?? "Not Available yet"} disabled />
+            </div>
           </div>
           </div>
         </div>

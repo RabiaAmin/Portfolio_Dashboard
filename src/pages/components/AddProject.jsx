@@ -88,6 +88,7 @@ function AddProject() {
         <div className="w-full space-y-1">
           <label className="text-sm font-medium">Project Title</label>
           <Input
+            placeholder="Enter Title"
             type="text"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
@@ -98,6 +99,7 @@ function AddProject() {
         <div className="w-full space-y-1">
           <label className="text-sm font-medium">Description</label>
           <Textarea
+            placeholder="Enter Description"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           />

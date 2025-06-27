@@ -97,7 +97,7 @@ export const addNewSkill = (data) => async (dispatch) => {
 export const deleteSkill = (id) => async (dispatch) => {
   dispatch(skillSlice.actions.deleteSkillRequest());
   try {
-    const response = axios.delete(
+    const response = axios.post(
       `http://localhost:3000/api/v1/skills/delete/${id}`,
       { withCredentials: true, headers: { "Content-Type": "application/json" } }
     );

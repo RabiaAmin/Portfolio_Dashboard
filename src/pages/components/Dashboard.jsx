@@ -75,7 +75,57 @@ function Dashboard() {
               </CardFooter>
             </Card>
           </div>
+           <Tabs defaultValue="Skills">
+            <TabsContent value="Skills">
+              <Card>
+                <CardHeader className="px-7">
+                  <CardTitle>Skills</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <div className="overflow-x-auto">
+                    <Table>
+                      <TableHeader>
+                        <TableRow>
+                          <TableHead className="w-[150px]">Category</TableHead>
+                          <TableHead className="w-[200px]">Skills</TableHead>
+                        
+                        </TableRow>
+                      </TableHeader>
+                      <TableBody>
+                        {skills ? (
+                          skills.map((skill, index) => (
+                            <TableRow key={index}>
+                              <TableCell className="truncate max-w-[140px]">
+                                {skill.category}
+                              </TableCell>
 
+                              <TableCell className="max-w-[140px]">
+                                <div className="flex gap-8  ">
+                                  {skill.skills?.map((skill, idx) => (
+                                    <p key={idx} className="truncate  bg-primary/40 py-1.5 px-3 rounded-md">
+                                      {skill}
+                                    </p>
+                                  ))}
+                                </div>
+                              </TableCell>
+
+                             
+                            </TableRow>
+                          ))
+                        ) : (
+                          <TableRow>
+                            <TableCell className="text-3xl overflow-hidden">
+                              You have not added any Skill yet!
+                            </TableCell>
+                          </TableRow>
+                        )}
+                      </TableBody>
+                    </Table>
+                  </div>
+                </CardContent>
+              </Card>
+            </TabsContent>
+          </Tabs>
           <Tabs defaultValue="projects">
             <TabsContent value="projects">
               <Card>
@@ -174,68 +224,7 @@ function Dashboard() {
             </TabsContent>
           </Tabs>
 
-          <Tabs defaultValue="Skills">
-            <TabsContent value="Skills">
-              <Card>
-                <CardHeader className="px-7">
-                  <CardTitle>Skills</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <div className="overflow-x-auto">
-                    <Table>
-                      <TableHeader>
-                        <TableRow>
-                          <TableHead className="w-[150px]">Category</TableHead>
-                          <TableHead className="w-[200px]">Skills</TableHead>
-                          <TableHead className="w-[200px]">Actions</TableHead>
-                        </TableRow>
-                      </TableHeader>
-                      <TableBody>
-                        {skills ? (
-                          skills.map((skill, index) => (
-                            <TableRow key={index}>
-                              <TableCell className="truncate max-w-[140px]">
-                                {skill.category}
-                              </TableCell>
-
-                              <TableCell className="max-w-[140px]">
-                                <ul className=" list-inside space-y-1">
-                                  {skill.skills?.map((skill, idx) => (
-                                    <li key={idx} className="truncate">
-                                      {skill}
-                                    </li>
-                                  ))}
-                                </ul>
-                              </TableCell>
-
-                              <TableCell className="flex gap-2 flex-wrap">
-                                <Link to={`/project/view/${skill._id}`}>
-                                  <Button
-                                    variant="outline"
-                                    size="sm"
-                                    className="transform transition duration-200 hover:scale-110 hover:bg-primary hover:text-muted"
-                                  >
-                                    View
-                                  </Button>
-                                </Link>
-                              
-                              </TableCell>
-                            </TableRow>
-                          ))
-                        ) : (
-                          <TableRow>
-                            <TableCell className="text-3xl overflow-hidden">
-                              You have not added any Skill yet!
-                            </TableCell>
-                          </TableRow>
-                        )}
-                      </TableBody>
-                    </Table>
-                  </div>
-                </CardContent>
-              </Card>
-            </TabsContent>
-          </Tabs>
+         
         </div>
       </main>
     </div>

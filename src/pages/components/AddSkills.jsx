@@ -16,8 +16,8 @@ import { toast } from "react-toastify";
 import SpecialLoadinBtn from '@/pages/components/specialLoadingBtn'
 
 function AddSkills() {
-  const [draftSkill, setDraftSkill] = useState(""); // Input value
-  const [skills, setSkills] = useState([]); // List of skills
+  const [draftSkill, setDraftSkill] = useState(""); 
+  const [skills, setSkills] = useState([]); 
   const [category, setCategory] = useState("");
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
@@ -34,7 +34,7 @@ function AddSkills() {
     }
   }, []);
 
-  // 2.  save on every change
+
   useEffect(() => {
     localStorage.setItem("categories", JSON.stringify(categories));
   }, [categories]);

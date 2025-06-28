@@ -154,26 +154,8 @@ function Dashboard() {
                                     View
                                   </Button>
                                 </Link>
-                                <Link to={`/project/edit/${proj._id}`}>
-                                  <Button
-                                    variant="outline"
-                                    size="sm"
-                                    className="transform transition duration-200 hover:scale-110 hover:bg-primary hover:text-muted"
-                                  >
-                                    Update
-                                  </Button>
-                                </Link>
-                                {/* <Button
-                                  variant="destructive"
-                                  className="transform transition duration-200 hover:scale-110"
-                                  size="sm"
-                                  onClick={() => {
-                                    // TODO: implement delete handler
-                                    console.log("Delete project", proj._id);
-                                  }}
-                                >
-                                <CookingPot size="18"/>
-                                </Button> */}
+                               
+                              
                               </TableCell>
                             </TableRow>
                           ))
@@ -236,15 +218,7 @@ function Dashboard() {
                                     View
                                   </Button>
                                 </Link>
-                                <Link to={`/project/edit/${skill._id}`}>
-                                  <Button
-                                    variant="outline"
-                                    size="sm"
-                                    className="transform transition duration-200 hover:scale-110 hover:bg-primary hover:text-muted"
-                                  >
-                                    Update
-                                  </Button>
-                                </Link>
+                              
                               </TableCell>
                             </TableRow>
                           ))

@@ -145,7 +145,7 @@ function Dashboard() {
                           <TableHead className="w-[100px]">Image</TableHead>
                           <TableHead className="w-[100px]">Demo</TableHead>
                           <TableHead className="w-[100px]">GitHub</TableHead>
-                          <TableHead className="w-[200px]">Actions</TableHead>
+                         
                         </TableRow>
                       </TableHeader>
                       <TableBody>
@@ -194,19 +194,7 @@ function Dashboard() {
                                   GitHub URL
                                 </a>
                               </TableCell>
-                              <TableCell className="flex gap-2 flex-wrap">
-                                <Link to={`/project/view/${proj._id}`}>
-                                  <Button
-                                    variant="outline"
-                                    size="sm"
-                                    className="transform transition duration-200 hover:scale-110 hover:bg-primary hover:text-muted"
-                                  >
-                                    View
-                                  </Button>
-                                </Link>
-                               
-                              
-                              </TableCell>
+                      
                             </TableRow>
                           ))
                         ) : (

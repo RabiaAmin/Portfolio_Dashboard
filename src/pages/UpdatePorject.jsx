@@ -10,6 +10,8 @@ import SpecialLoadinBtn from "@/pages/components/specialLoadingBtn";
 import {
   clearAllProjectSliceError,
 
+  getAllProject,
+
   resetProjectSlice,
   updateProject,
 } from "@/store/slices/projectSlice";
@@ -53,7 +55,7 @@ function UpdateProject() {
           formData.append("title", title);
           formData.append("Description", description);
           formData.append("tags", JSON.stringify(tag)); 
-          formData.append("image", imagePreview);
+          formData.append("image", imageFile);
          formData.append("demoUrl", demoUrl);
           formData.append("gitHubUrl", gitHubUrl);
          
@@ -91,7 +93,7 @@ function UpdateProject() {
     if (message) {
       toast.success(message);
       dispatch(resetProjectSlice());
-      
+     dispatch( getAllProject());
     }
   }, [dispatch, error, loading, message]);
 

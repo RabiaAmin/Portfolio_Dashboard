@@ -143,7 +143,6 @@ function AddProject() {
           <label className="text-sm font-medium">Upload Image</label>
            <Input
               type="file"
-              value={imageFile}
               onChange={(e) => {
                 setImageFile(e.target.files[0]);
                 setImagePreview(URL.createObjectURL(e.target.files[0]));

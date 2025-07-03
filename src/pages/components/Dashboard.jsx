@@ -186,7 +186,7 @@ function Dashboard() {
                               </TableCell>
                               <TableCell>
                                 <a
-                                  href={proj.githubUrl}
+                                  href={proj.gitHubUrl}
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   className="text-blue-600 hover:underline"

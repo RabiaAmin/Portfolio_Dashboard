@@ -135,7 +135,7 @@ function ManageProject() {
                               </TableCell>
                               <TableCell>
                                 <a
-                                  href={proj.githubUrl}
+                                  href={proj.gitHubUrl}
                                   target="_blank"
                                   rel="noopener noreferrer"
                                   className="text-blue-600 hover:underline"
@@ -143,7 +143,7 @@ function ManageProject() {
                                   GitHub URL
                                 </a>
                               </TableCell>
-                              <TableCell className="flex gap-2 flex-wrap">
+                              <TableCell className="flex gap-2 flex-wrap ">
                                  <Link to={`/view/projects/${proj._id}`}>
                                 <Button
                                   variant="outline"

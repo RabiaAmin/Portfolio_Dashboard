@@ -33,7 +33,7 @@ function HomePage() {
   const handleLogout = () => {
     dispatch(logout());
     toast.success("User Logged Out!");
-     navigateTo("/login");
+   
   };
 
   useEffect(() => {
@@ -44,7 +44,7 @@ function HomePage() {
     if (!isAuthenticated) {
       navigateTo("/login");
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated,dispatch,error]);
 
   return (
     <div className='flex flex-col min-h-screen bg-muted/40'>

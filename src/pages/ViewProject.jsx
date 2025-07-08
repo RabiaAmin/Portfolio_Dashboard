@@ -19,7 +19,7 @@ function ViewProject() {
     const getProject = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:3000/api/v1/project/getSingleProject/${id}`,
+          `https://portfolio-backend-op5p.onrender.com/api/v1/project/getSingleProject/${id}`,
           { withCredentials: true }
         );
         const p = res.data.project;

@@ -9,24 +9,32 @@ import UpdatePorject from './pages/UpdatePorject'
 import ResetPassword from './pages/ResetPassword'
 import NotFoundPage from './pages/NotFoundPage'
 import { ToastContainer } from 'react-toastify';
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
 import { useDispatch } from 'react-redux'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { getUser } from './store/slices/userSlice'
 import { getAllSkills } from './store/slices/skillSlice'
 import { getAllProject } from './store/slices/projectSlice'
+import LoadingScreen from './pages/components/LoadingScreen'
 function App() {
 
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(true);
 
-  useEffect(()=>{
-       dispatch(getUser());
-       dispatch(getAllSkills());
-       dispatch(getAllProject())
-  })
- 
+  useEffect(() => {
+    const fetchData =  () => {
+      dispatch(getUser());
+      dispatch(getAllSkills());
+      dispatch(getAllProject());
+      setLoading(false);
+    }
+
+    fetchData();
+  }, [dispatch]);
+
+  if (loading) return <LoadingScreen />;
   return (
-     <BrowserRouter>
+     <Router>
         <Routes>
           <Route path="/" element={<HomePage/>} />
           <Route path="/login" element={<Login/>} />
@@ -41,9 +49,9 @@ function App() {
 
         </Routes>
 
-                  <ToastContainer position='bottom-right theme="dark' />
+         <ToastContainer position='bottom-right theme="dark' />
     
-    </BrowserRouter>
+    </Router>
   )
 }
 

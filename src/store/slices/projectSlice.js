@@ -88,7 +88,7 @@ export const getAllProject = () => async (dispatch) => {
   dispatch(projectSlice.actions.getAllProjectRequest());
   try {
     const { data } = await axios.get(
-      " http://localhost:3000/api/v1/project/getall",
+      " https://portfolio-backend-op5p.onrender.com/api/v1/project/getall",
       { withCredentials: true }
     );
     dispatch(projectSlice.actions.getAllProjectSuccess(data.project));
@@ -102,7 +102,7 @@ export const addNewProject = (data) => async (dispatch) => {
   dispatch(projectSlice.actions.addNewProjectRequest());
   try {
     const response = await axios.post(
-      "http://localhost:3000/api/v1/project/add",
+      "https://portfolio-backend-op5p.onrender.com/api/v1/project/add",
       data,
       { withCredentials: true ,headers: {"Content-Type":"multipart/form-data"}}
     );
@@ -117,7 +117,7 @@ export const deleteProject = (id) => async (dispatch) => {
   dispatch(projectSlice.actions.deleteProjectRequest());
   try {
     const response = await axios.delete(
-      `http://localhost:3000/api/v1/project/delete/${id}`,
+      `https://portfolio-backend-op5p.onrender.com/api/v1/project/delete/${id}`,
       { withCredentials: true, headers: { "Content-Type": "application/json" } }
     );
     dispatch(projectSlice.actions.deleteProjectSuccess(response.data.message));
@@ -130,7 +130,7 @@ export const deleteProject = (id) => async (dispatch) => {
 export const updateProject = (id,formdata) => async (dispatch)=>{
   dispatch(projectSlice.actions.updateProjectRequest());
   try {
-    const {data} = await axios.put(`http://localhost:3000/api/v1/project/update/${id}`,formdata,{withCredentials:true,headers:{ "Content-Type": "multipart/form-data"}});
+    const {data} = await axios.put(`https://portfolio-backend-op5p.onrender.com/api/v1/project/update/${id}`,formdata,{withCredentials:true,headers:{ "Content-Type": "multipart/form-data"}});
      dispatch(projectSlice.actions.updateProjectSuccess(data.message));
      dispatch(projectSlice.actions.clearAllErrors());
   } catch (error) {

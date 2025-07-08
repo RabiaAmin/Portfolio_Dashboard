@@ -109,7 +109,7 @@ export const login = (email, password) => async (dispatch) => {
   dispatch(userSllice.actions.loginRequest());
   try {
     const data = await axios.post(
-      "http://localhost:3000/api/v1/user/login",
+      "https://portfolio-backend-op5p.onrender.com/api/v1/user/login",
       { email, password },
       { withCredentials: true, headers: { "Content-Type": "application/json" } }
     );
@@ -123,7 +123,7 @@ export const login = (email, password) => async (dispatch) => {
 export const getUser = () => async (dispatch) => {
   dispatch(userSllice.actions.loadUserRequest());
   try {
-    const data = await axios.get("http://localhost:3000/api/v1/user/getUser", {
+    const data = await axios.get("https://portfolio-backend-op5p.onrender.com/api/v1/user/getUser", {
       withCredentials: true,
     });
  
@@ -136,7 +136,7 @@ export const getUser = () => async (dispatch) => {
 
 export const logout = () => async (dispatch) => {
   try {
-    const data = await axios.get("http://localhost:3000/api/v1/user/logout", {
+    const data = await axios.get("https://portfolio-backend-op5p.onrender.com/api/v1/user/logout", {
       withCredentials: true,
     });
     console.log("this is user Data", data);
@@ -150,7 +150,7 @@ export const logout = () => async (dispatch) => {
 export const updatePassword = (currentPassword,newPassword,confirmNewPassword)=> async (dispatch)=>{
   dispatch(userSllice.actions.updatePasswordRequest());
   try {
-     const {data} = await axios.put("http://localhost:3000/api/v1/user/update/pawssord",{currentPassword,newPassword,confirmNewPassword},{withCredentials:true,headers:{"Content-Type":"application/json"}});
+     const {data} = await axios.put("https://portfolio-backend-op5p.onrender.com/api/v1/user/update/pawssord",{currentPassword,newPassword,confirmNewPassword},{withCredentials:true,headers:{"Content-Type":"application/json"}});
      dispatch(userSllice.actions.updatePasswordSuccess(data.message));
      dispatch(userSllice.actions.clearAllErrors());
   } catch (error) {
@@ -161,7 +161,7 @@ export const updatePassword = (currentPassword,newPassword,confirmNewPassword)=>
 export const updateProfile = (formdata)=> async (dispatch)=>{
   dispatch(userSllice.actions.updateProfileRequest());
   try {
-     const {data} = await axios.put("http://localhost:3000/api/v1/user/update/profile",formdata,{withCredentials:true,headers:{"Content-Type":"multipart/form-data"}});
+     const {data} = await axios.put("https://portfolio-backend-op5p.onrender.com/api/v1/user/update/profile",formdata,{withCredentials:true,headers:{"Content-Type":"multipart/form-data"}});
      dispatch(userSllice.actions.updateProfileSuccess(data.message));
      dispatch(userSllice.actions.clearAllErrors());
   } catch (error) {

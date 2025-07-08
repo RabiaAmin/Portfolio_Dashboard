@@ -95,7 +95,7 @@ function Login() {
               </form>
               <div className="bg-muted relative hidden md:block">
                 <img
-                  src="/assets/images/loginImg.png"
+                  src="./assets/images/loginImg.png"
                   alt="Image"
                   className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-in-out transform hover:scale-105 dark:brightness-[0.2] dark:grayscale"
                 />

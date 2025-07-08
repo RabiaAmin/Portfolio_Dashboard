@@ -84,7 +84,7 @@ export const getAllSkills = () => async (dispatch) => {
   dispatch(skillSlice.actions.getAllSkillRequest());
   try {
     const { data } = await axios.get(
-      " http://localhost:3000/api/v1/skills/getall",
+      " https://portfolio-backend-op5p.onrender.com/api/v1/skills/getall",
       { withCredentials: true }
     );
     dispatch(skillSlice.actions.getAllSkillSuccess(data.skills));
@@ -98,7 +98,7 @@ export const addNewSkill = (data) => async (dispatch) => {
   dispatch(skillSlice.actions.addNewSkillRequest());
   try {
     const response = await axios.post(
-      "http://localhost:3000/api/v1/skills/add",
+      "https://portfolio-backend-op5p.onrender.com/api/v1/skills/add",
       data,
       { withCredentials: true }
     );
@@ -113,7 +113,7 @@ export const deleteSkill = (id) => async (dispatch) => {
   dispatch(skillSlice.actions.deleteSkillRequest());
   try {
     const response = await axios.delete(
-      `http://localhost:3000/api/v1/skills/delete/${id}`,
+      `https://portfolio-backend-op5p.onrender.com/api/v1/skills/delete/${id}`,
       { withCredentials: true, headers: { "Content-Type": "application/json" } }
     );
     dispatch(skillSlice.actions.deleteSkillSuccess(response.data.message));
@@ -126,7 +126,7 @@ export const deleteSkill = (id) => async (dispatch) => {
 export const updateSkill = (id,formdata) => async (dispatch)=>{
   dispatch(skillSlice.actions.updateSkillRequest());
   try {
-    const {data} = await axios.put(`http://localhost:3000/api/v1/skills/update/${id}`,formdata,{withCredentials:true,headers:{"Content-Type":"application/json"}});
+    const {data} = await axios.put(`https://portfolio-backend-op5p.onrender.com/api/v1/skills/update/${id}`,formdata,{withCredentials:true,headers:{"Content-Type":"application/json"}});
      dispatch(skillSlice.actions.updateSkillSuccess(data.message));
      dispatch(skillSlice.actions.clearAllErrors());
   } catch (error) {

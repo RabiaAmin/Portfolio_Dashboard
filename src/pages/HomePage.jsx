@@ -33,6 +33,7 @@ function HomePage() {
   const handleLogout = () => {
     dispatch(logout());
     toast.success("User Logged Out!");
+     navigateTo("/login");
   };
 
   useEffect(() => {

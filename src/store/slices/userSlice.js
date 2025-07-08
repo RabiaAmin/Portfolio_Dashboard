@@ -51,8 +51,9 @@ const userSllice = createSlice({
     logoutSuccess(state, action) {
       state.loading = false;
       state.isAuthenticated = false;
-      state.user = action.payload;
-      (state.error = null), (state.message = action.payload);
+      state.user = {};
+      state.error = null;
+      state.message = action.payload;
     },
     logoutFail(state, action) {
       state.loading = false;
@@ -139,7 +140,7 @@ export const logout = () => async (dispatch) => {
     const data = await axios.get("https://portfolio-backend-op5p.onrender.com/api/v1/user/logout", {
       withCredentials: true,
     });
-    console.log("this is user Data", data);
+ 
     dispatch(userSllice.actions.logoutSuccess(data.data.message));
     dispatch(userSllice.actions.clearAllErrors());
   } catch (error) {

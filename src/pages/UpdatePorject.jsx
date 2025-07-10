@@ -9,14 +9,12 @@ import { toast } from "react-toastify";
 import SpecialLoadinBtn from "@/pages/components/specialLoadingBtn";
 import {
   clearAllProjectSliceError,
-
   getAllProject,
-
   resetProjectSlice,
   updateProject,
 } from "@/store/slices/projectSlice";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 function UpdateProject() {
   const [title, setTitle] = useState("");
@@ -44,23 +42,23 @@ function UpdateProject() {
     setTag(tag.filter((t) => t !== tagToRemove));
   };
 
-  const handleUpdate =(e)=>{
-      e.preventDefault();
-       if (!title || !description || tag.length === 0 || !imageFile) {
-            toast.error("Please fill all required fields!");
-            return;
-          }
-      
-          const formData = new FormData();
-          formData.append("title", title);
-          formData.append("Description", description);
-          formData.append("tags", JSON.stringify(tag)); 
-          formData.append("image", imageFile);
-         formData.append("demoUrl", demoUrl);
-          formData.append("gitHubUrl", gitHubUrl);
-         
-     dispatch(updateProject( id, formData ));
-  }
+  const handleUpdate = (e) => {
+    e.preventDefault();
+    if (!title || !description || tag.length === 0 || !imageFile) {
+      toast.error("Please fill all required fields!");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("Description", description);
+    formData.append("tags", JSON.stringify(tag));
+    formData.append("image", imageFile);
+    formData.append("demoUrl", demoUrl);
+    formData.append("gitHubUrl", gitHubUrl);
+
+    dispatch(updateProject(id, formData));
+  };
 
   useEffect(() => {
     const getProject = async () => {
@@ -75,7 +73,7 @@ function UpdateProject() {
         setDemoUrl(p.demoUrl ?? "");
         setGitHubUrl(p.gitHubUrl ?? "");
         setImagePreview(p.image.url);
-        setImageFile(p.image.url)
+        setImageFile(p.image.url);
         setTag(p.tags || []);
       } catch (error) {
         toast.error(error.response?.data?.message || "Failed to load project");
@@ -93,120 +91,141 @@ function UpdateProject() {
     if (message) {
       toast.success(message);
       dispatch(resetProjectSlice());
-     dispatch( getAllProject());
+      dispatch(getAllProject());
     }
   }, [dispatch, error, loading, message]);
 
   return (
-    <div className="flex justify-center px-4 py-10">
-      <form  onSubmit={handleUpdate} className="w-full max-w-2xl bg-white dark:bg-gray-900 p-6 rounded-lg shadow space-y-6">
-        <h1 className="text-2xl font-bold text-center text-primary">Update Project</h1>
+    <div className="flex flex-col p-2">
+      <main className="grid flex-1 items-start gap-4 sm:px-6 sm:py-0 md:gap-8 lg:grid-cols-2">
+        <div className="grid auto-rows-max items-start gap-4 md:gap-8 lg:col-span-2 p-4">
+          <div className="flex justify-between items-center bg-muted/40">
+            <h1 className="text-center text-2xl font-bold tracking-tight dark:text-gray-100">
+              Update Project
+            </h1>
+            <Link to={"/"}>
+              <Button>Back to Dashboard</Button>
+            </Link>
+          </div>
 
-        {/* Title */}
-        <div className="space-y-1">
-          <label className="text-sm font-medium">Project Title</label>
-          <Input value={title} onChange={(e) => setTitle(e.target.value)} />
-        </div>
-
-        {/* Description */}
-        <div className="space-y-1">
-          <label className="text-sm font-medium">Description</label>
-          <Textarea
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
-        </div>
-
-        {/* Tags */}
-        <div className="space-y-2">
-          <label className="text-sm font-medium">Tags</label>
-          <div className="flex gap-2">
-            <Input
-              value={tagInput}
-              onChange={(e) => setTagInput(e.target.value)}
-              placeholder="Enter a tag"
-            />
-            <Button
-              type="button"
-              onClick={handleAddTag}
-              className="gap-1 border border-primary bg-transparent text-primary hover:bg-primary hover:text-white"
+          <div className="flex justify-center px-4 py-10">
+            <form
+              onSubmit={handleUpdate}
+              className="w-full max-w-2xl bg-white dark:bg-gray-900 p-6 rounded-lg shadow space-y-6"
             >
-              <Plus size={16} /> Add
-            </Button>
-          </div>
-          <div className="flex flex-wrap gap-2">
-            {tag.map((t) => (
-              <div key={t} className="group flex flex-col items-start">
-                <X
-                  size={18}
-                  onClick={() => handleRemoveTag(t)}
-                  className="cursor-pointer self-end transition group-hover:scale-125 hover:text-red-500"
+            
+
+              {/* Title */}
+              <div className="space-y-1">
+                <label className="text-sm font-medium">Project Title</label>
+                <Input
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
                 />
-                <Badge variant="outline" className="px-3 py-1 text-sm">
-                  {t}
-                </Badge>
               </div>
-            ))}
+
+              {/* Description */}
+              <div className="space-y-1">
+                <label className="text-sm font-medium">Description</label>
+                <Textarea
+                  value={description}
+                  onChange={(e) => setDescription(e.target.value)}
+                />
+              </div>
+
+              {/* Tags */}
+              <div className="space-y-2">
+                <label className="text-sm font-medium">Tags</label>
+                <div className="flex gap-2">
+                  <Input
+                    value={tagInput}
+                    onChange={(e) => setTagInput(e.target.value)}
+                    placeholder="Enter a tag"
+                  />
+                  <Button
+                    type="button"
+                    onClick={handleAddTag}
+                    className="gap-1 border border-primary bg-transparent text-primary hover:bg-primary hover:text-white"
+                  >
+                    <Plus size={16} /> Add
+                  </Button>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {tag.map((t) => (
+                    <div key={t} className="group flex flex-col items-start">
+                      <X
+                        size={18}
+                        onClick={() => handleRemoveTag(t)}
+                        className="cursor-pointer self-end transition group-hover:scale-125 hover:text-red-500"
+                      />
+                      <Badge variant="outline" className="px-3 py-1 text-sm">
+                        {t}
+                      </Badge>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Image Upload */}
+              <div className="space-y-2">
+                <label className="text-sm font-medium">Upload Image</label>
+                <Input
+                  type="file"
+                  accept="image/*"
+                  onChange={(e) => {
+                    const file = e.target.files?.[0];
+                    if (file) {
+                      setImageFile(file);
+                      setImagePreview(URL.createObjectURL(file));
+                    }
+                  }}
+                />
+                {imagePreview && (
+                  <img
+                    src={imagePreview}
+                    alt="Preview"
+                    className="h-64 w-full object-contain rounded-md shadow"
+                  />
+                )}
+              </div>
+
+              {/* Demo URL */}
+              <div className="space-y-1">
+                <label className="text-sm font-medium">Demo URL</label>
+                <Input
+                  type="url"
+                  value={demoUrl}
+                  onChange={(e) => setDemoUrl(e.target.value)}
+                  placeholder="https://demo.com/project"
+                />
+              </div>
+
+              {/* GitHub URL */}
+              <div className="space-y-1">
+                <label className="text-sm font-medium">GitHub URL</label>
+                <Input
+                  type="url"
+                  value={gitHubUrl}
+                  onChange={(e) => setGitHubUrl(e.target.value)}
+                  placeholder="https://github.com/user/repo"
+                />
+              </div>
+
+              {/* Submit */}
+              {loading ? (
+                <SpecialLoadinBtn content="Updating..." />
+              ) : (
+                <Button
+                  type="submit"
+                  className="w-full hover:bg-primary/90 transition hover:scale-105"
+                >
+                  Save Changes
+                </Button>
+              )}
+            </form>
           </div>
         </div>
-
-        {/* Image Upload */}
-        <div className="space-y-2">
-          <label className="text-sm font-medium">Upload Image</label>
-          <Input
-            type="file"
-            accept="image/*"
-            onChange={(e) => {
-              const file = e.target.files?.[0];
-              if (file) {
-                setImageFile(file);
-                setImagePreview(URL.createObjectURL(file));
-              }
-            }}
-          />
-          {imagePreview && (
-            <img
-              src={imagePreview}
-              alt="Preview"
-              className="h-64 w-full object-contain rounded-md shadow"
-            />
-          )}
-        </div>
-
-        {/* Demo URL */}
-        <div className="space-y-1">
-          <label className="text-sm font-medium">Demo URL</label>
-          <Input
-            type="url"
-            value={demoUrl}
-            onChange={(e) => setDemoUrl(e.target.value)}
-            placeholder="https://demo.com/project"
-          />
-        </div>
-
-        {/* GitHub URL */}
-        <div className="space-y-1">
-          <label className="text-sm font-medium">GitHub URL</label>
-          <Input
-            type="url"
-            value={gitHubUrl}
-            onChange={(e) => setGitHubUrl(e.target.value)}
-            placeholder="https://github.com/user/repo"
-          />
-        </div>
-
-        {/* Submit */}
-        {loading ? (
-          <SpecialLoadinBtn content="Updating..." />
-        ) : (
-          <Button
-            type="submit"
-            className="w-full hover:bg-primary/90 transition hover:scale-105"
-          >
-            Save Changes
-          </Button>
-        )}
-      </form>
+      </main>
     </div>
   );
 }

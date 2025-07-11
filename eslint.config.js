@@ -30,4 +30,17 @@ export default [
       ],
     },
   },
+
+
+  {
+    files: ['main.js'], // or ['electron/**.js'] if you use a folder
+    languageOptions: {
+      ecmaVersion: 2020,
+      globals: globals.node,
+      sourceType: 'module',
+    },
+    rules: {
+      ...js.configs.recommended.rules,
+    },
+  },
 ]

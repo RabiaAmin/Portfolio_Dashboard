@@ -37,7 +37,7 @@ function Dashboard() {
                 </CardDescription>
               </CardHeader>
               <CardFooter>
-                <Link to="https://rabiadevdashboard.netlify.app/#/">
+                <Link to="https://rabiadevportfolio.netlify.app/">
                   <Button className="border bg-transparent border-primary text-primary hover:bg-primary hover:text-muted cursor-pointer">
                     Visit Portfolio
                   </Button>
